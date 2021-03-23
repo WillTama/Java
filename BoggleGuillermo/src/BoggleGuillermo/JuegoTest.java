@@ -3,7 +3,7 @@ package BoggleGuillermo;
 
 /**
  * 
- * @author Guillermo Tamajón Hernández
+ * @author Guillermo TamajÃ³n HernÃ¡ndez
  * 
  */
 
@@ -18,13 +18,13 @@ import java.util.Scanner;
 
 public class JuegoTest {
 
-  //Tiempo que durará la partida
-  static int segundos = 30;
+  //Tiempo que durarÃ¡ la partida
+  static int segundos = 180;
 
-  //Método para salir del juego o empezar otro
+  //MÃ©todo para salir del juego o empezar otro
   static boolean deseoSalir() {
     Scanner s = new Scanner(System.in);
-    System.out.println("¿Quiéres jugar otra? (s/n)");
+    System.out.println("Â¿QuiÃ©res jugar otra? (s/n)");
     String salir = s.nextLine();
 
     if (salir.toLowerCase().charAt(0) == 's') {
@@ -37,7 +37,7 @@ public class JuegoTest {
   static void mostrarPuntos(ArrayList<Jugador> jugadores) {
 
     for(int i = 0; i<jugadores.size(); i++) {
-      System.out.println(jugadores.get(i).getNombre() + " acertó: {"
+      System.out.println(jugadores.get(i).getNombre() + " acertÃ³: {"
           + jugadores.get(i).devolvePalabrasAcertadas() + "}, total de: " + jugadores.get(i).getPuntos() + " PUNTOS.");
     }    
   }
@@ -62,7 +62,7 @@ public class JuegoTest {
       }
     }
 
-    System.out.println("¡¡FELICIDADES " + ganadores + "...!!");
+    System.out.println("Â¡Â¡FELICIDADES " + ganadores + "...!!");
   }
 
 
@@ -72,7 +72,7 @@ public class JuegoTest {
     String linea;//Declaro para usar luego
 
 
-    //Añado las palabras de la rae sin tildes a una colección
+    //AÃ±ado las palabras de la rae sin tildes a una colecciÃ³n
     HashSet<String> palabrasRAE = new HashSet<String>();
     while((linea=ficheroRAE.readLine()) != null) {
       palabrasRAE.add(devuelveSinTildes(linea));
@@ -94,19 +94,19 @@ public class JuegoTest {
     
     for(int i = 0; i < palabra.length(); i++) {
       
-      if (palabra.charAt(i) == 'á') {
+      if (palabra.charAt(i) == 'Ã¡') {
         nuevaPalabra = nuevaPalabra + 'a';
       }
-      else if (palabra.charAt(i) == 'é') {
+      else if (palabra.charAt(i) == 'Ã©') {
         nuevaPalabra = nuevaPalabra + 'e';
       }
-      else if (palabra.charAt(i) == 'í') {
+      else if (palabra.charAt(i) == 'Ã­') {
         nuevaPalabra = nuevaPalabra + 'i';
       }
-      else if (palabra.charAt(i) == 'ó') {
+      else if (palabra.charAt(i) == 'Ã³') {
         nuevaPalabra = nuevaPalabra + 'o';
       }
-      else if (palabra.charAt(i) == 'ú') {
+      else if (palabra.charAt(i) == 'Ãº') {
         nuevaPalabra = nuevaPalabra + 'u';
       }
       else {
@@ -117,7 +117,7 @@ public class JuegoTest {
     
   }
 
-  //Creo los jugadores y los añado a un arraylist
+  //Creo los jugadores y los aÃ±ado a un arraylist
   static ArrayList<Jugador> crearJugadores(int numeroDeJugadores) {
     Scanner s = new Scanner(System.in);
     ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
@@ -149,7 +149,7 @@ public class JuegoTest {
     Scanner s = new Scanner(System.in);
 
     try {
-      //INICIALIZACIÓN
+      //INICIALIZACIÃ“N
       String palabra = "";
       int jugador;
       HashSet<String> palabrasRAE = crearColeccionRAE();
@@ -169,14 +169,14 @@ public class JuegoTest {
         tablero = new Tablero();
 
         //Creo jugadores y los guardo en un arrayList
-        System.out.println("¿Cuántos jugadores serán?: ");
+        System.out.println("Â¿CuÃ¡ntos jugadores serÃ¡n?: ");
         jugadores = crearJugadores(s.nextInt());
         s.nextLine();
 
         //PARTIDA DE CADA JUGADOR
         for (int i = 0; i < jugadores.size(); i++) {
 
-          //Mensaje de quién comienza
+          //Mensaje de quiÃ©n comienza
           System.out.println("Es el turno de " + jugadores.get(i).nombre + ": ");
           pausar();
 
@@ -184,7 +184,7 @@ public class JuegoTest {
           contador = new Contador();
           contador.cuentaAtras(segundos);
 
-          //Bucle para partida con condición del contador
+          //Bucle para partida con condiciÃ³n del contador
           while (contador.intervalo > 0) {
 
             System.out.println(tablero);
@@ -193,15 +193,15 @@ public class JuegoTest {
             System.out.print("Palabra: ");
             palabra = s.nextLine();
 
-            //Compruebo si es correcta la palabra para añadirla a aciertos del jugador actual
-            //También compruebo que el tiempo no se ha acabado
+            //Compruebo si es correcta la palabra para aÃ±adirla a aciertos del jugador actual
+            //TambiÃ©n compruebo que el tiempo no se ha acabado
             if (tablero.esPalabraCorrecta(devuelveSinTildes(palabra), palabrasRAE) && contador.intervalo > 0) {
-              jugadores.get(i).añadirPalabra(devuelveSinTildes(palabra));
+              jugadores.get(i).aÃ±adirPalabra(devuelveSinTildes(palabra));
             }
 
           }
 
-          System.out.println("SE ACABÓ EL TIEMPO");
+          System.out.println("SE ACABÃ“ EL TIEMPO");
         }
         
         //Fin de partida. Muestro resultados
@@ -216,7 +216,7 @@ public class JuegoTest {
 
       } while (deseoSalir());
 
-      System.out.println("HASTA LA PRÓXIMA");
+      System.out.println("HASTA LA PRÃ“XIMA");
 
     } 
     catch (IOException e) {
@@ -225,7 +225,7 @@ public class JuegoTest {
     }
     
     catch (InputMismatchException e) {
-      System.out.println("Debes insertar un número");
+      System.out.println("Debes insertar un nÃºmero");
       pausar2();
     }
     
