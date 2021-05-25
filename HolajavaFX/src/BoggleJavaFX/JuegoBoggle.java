@@ -195,8 +195,8 @@ public class JuegoBoggle extends Application {
     
     
     miImagenView.setImage(miImagen);
-    miImagenView.setFitHeight(150);
-    miImagenView.setFitWidth(490);
+    miImagenView.setFitHeight(300);
+    miImagenView.setFitWidth(850);
     
   }
 
