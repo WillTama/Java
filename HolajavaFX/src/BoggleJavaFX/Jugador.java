@@ -60,14 +60,18 @@ public class Jugador {
     return puntos;
   }
   
-  //Devuelvo las palabras acertadas de un jugador
+    //Devuelvo las palabras acertadas de un jugador
   public String devolvePalabrasAcertadas() {
     
     String palabrasADevolver = "";
     for(int i = 0; i<palabrasAcertadas.size(); i++) {
       palabrasADevolver = palabrasADevolver + palabrasAcertadas.get(i) + ", ";
     }
-    return palabrasADevolver;
+    
+    if (palabrasADevolver.isEmpty()) {
+      return palabrasADevolver;
+    }
+    return palabrasADevolver.substring(0, palabrasADevolver.length() - 2);
   }
 
 }
