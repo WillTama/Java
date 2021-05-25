@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class JuegoBoggle extends Application {
 
@@ -27,9 +29,9 @@ public class JuegoBoggle extends Application {
   private Label puntos = new Label();
   private Button botonMostrarResultados = new Button();
   private GridPane panelBotones = new GridPane();
+  private final ImageView miImagenView = new ImageView();   
+  private Image miImagen = new Image(JuegoBoggle.class.getResourceAsStream("titulo.png"));
   
-  
-
   public void activarBotones() {
     for (int i=0;i<botones.length;i++) {
       botones[i].setDisable(false);
@@ -96,7 +98,7 @@ public class JuegoBoggle extends Application {
     });
 
     VBox vb = new VBox(20);
-    vb.getChildren().addAll(boton);
+    vb.getChildren().addAll(miImagenView, boton);
     Scene scene = new Scene(vb, 800, 520);
     scene.getStylesheets().add(getClass().getResource("estilooscuro.css").toExternalForm());
     return scene; 
@@ -126,7 +128,7 @@ public class JuegoBoggle extends Application {
 
     botonMostrarResultados.setText("Terminar");
     
-    // Evento que cambia de escena 
+    // Evento que cambia de escena y muestra resultados a partir del botón
     botonMostrarResultados.setOnAction(new EventHandler<ActionEvent>() 
         {
       @Override
@@ -135,6 +137,7 @@ public class JuegoBoggle extends Application {
         primaryStage.show();
       }
         });
+    
 
     HBox hbox = new HBox();
     hbox.getChildren().addAll(palabraEscrita, botonGuardarPalabra);
@@ -146,7 +149,7 @@ public class JuegoBoggle extends Application {
   }
 
 
-  public Scene crearEscenaResultados(Stage primaryStage) {
+  private Scene crearEscenaResultados(Stage primaryStage) {
     Button boton = new Button();
     boton.setText("Jugar de nuevo");
 
@@ -172,8 +175,13 @@ public class JuegoBoggle extends Application {
     Label palabras = new Label();
     palabras.setText(jugador.devolvePalabrasAcertadas());
 
+    // Rellenar resultado
     Label texto = new Label();
     texto.setText("¡" + puntos.getText() + "! Acertaste las palabras: ");
+    if (puntos.getText().equals("")) {
+      texto.setText("¡No acertaste ninguna palabra!");
+    }
+    
     
     VBox vb = new VBox(20);
     vb.getChildren().addAll(texto, palabras, boton);
@@ -184,6 +192,11 @@ public class JuegoBoggle extends Application {
 
   @Override
   public void init() throws IOException {
+    
+    
+    miImagenView.setImage(miImagen);
+    miImagenView.setFitHeight(150);
+    miImagenView.setFitWidth(490);
     
   }
 
